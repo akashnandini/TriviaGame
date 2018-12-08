@@ -52,7 +52,8 @@ var questions_length = questions.length;
 function correctAnswer(){
 	$(".button").on("click");
 	$(".answer-buttons").hide();	
-	$('.question').text("Correct Answer!");
+    //$('.question').text("Correct Answer!");
+    $('.question').html("Correct Answer!");
 	ques_counter++;
 	answeredCorrect++;
 	clearInterval(intervalId);
@@ -67,7 +68,7 @@ function correctAnswer(){
 function wrongAnswer(){
 	$('.button').off("click");
 	$('.answer-buttons').hide();
-	$('.question').text("Nope..Wrong Answer!");
+	$('.question').text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
 	ques_counter++;
 	answeredWrong++
 	clearInterval(intervalId);
