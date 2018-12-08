@@ -52,7 +52,8 @@ var questions_length = questions.length;
 function correctAnswer(){
 	$(".button").on("click");
 	$(".answer-buttons").hide();	
-    $(".question").html("Correct Answer!");
+    //$('.question').text("Correct Answer!");
+    $('.question').html("Correct Answer!");
 	ques_counter++;
 	answeredCorrect++;
 	clearInterval(intervalId);
@@ -65,9 +66,9 @@ function correctAnswer(){
 
 // Wrong answer
 function wrongAnswer(){
-	$(".button").off("click");
-	$(".answer-buttons").hide();
-	$(".question").text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
+	$('.button').off("click");
+	$('.answer-buttons').hide();
+	$('.question').text("Nope..Wrong Answer! The correct answer was" + questions[ques_counter].correct);
 	ques_counter++;
 	answeredWrong++
 	clearInterval(intervalId);
@@ -81,10 +82,9 @@ function wrongAnswer(){
 
 //Interval
 function noTime(){
-	$(".button").off("click");
-	$(".question").text("Time's Up!").css({"color" : "red", "font-size" : "5em"});
-    $(".answer-buttons").hide();
-    console.log(ques_counter);
+	$('.button').off("click");
+	$('.question').text("Time's Up!").css({"color" : "red", "font-size" : "5em"});
+	$('.answer-buttons').hide();
 	ques_counter++;
 	unAnswered++
 	clearInterval(intervalId);
@@ -97,7 +97,7 @@ function noTime(){
 
 //Final Screen
 function endScreen(){
-	$(".answer-buttons").show();
+	$('.answer-buttons').show();
 	$('.ans1').text("Correct answers: " + answeredCorrect );
 	$('.ans2').text("Wrong answers: " + answeredWrong );
 	$('.ans3').text("Unanswered: " + unAnswered );
