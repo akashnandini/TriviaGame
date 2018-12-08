@@ -50,7 +50,7 @@ var questions_length = questions.length;
 //correct answer
 
 function correctAnswer(){
-	$(".button").on("click");
+	$(".button").off("click");
 	$(".answer-buttons").hide();	
     //$('.question').text("Correct Answer!");
     $('.question').html("Correct Answer!");
@@ -68,7 +68,7 @@ function correctAnswer(){
 function wrongAnswer(){
 	$('.button').off("click");
 	$('.answer-buttons').hide();
-	$('.question').text("Nope..Wrong Answer! The correct answer was" + questions[ques_counter].correct);
+	$('.question').text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
 	ques_counter++;
 	answeredWrong++
 	clearInterval(intervalId);
@@ -151,11 +151,6 @@ function gameReset() {
     answeredCorrect = 0;
     answeredWrong = 0;
     unAnswered = 0;
-
-    return ques_counter;
-    return answeredCorrect;
-    return answeredWrong;
-    return unAnswered;
 }
 
 //Main part
@@ -165,6 +160,7 @@ $(document).ready(function() {
 	$('.ans3').hide();
 	$('.ans4').hide();
 	$('.button').on("click", function(){
+        $('.ans1').show();
 		$('.ans2').show();
 		$('.ans3').show();
 		$('.ans4').show();
