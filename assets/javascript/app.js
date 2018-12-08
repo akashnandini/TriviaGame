@@ -97,11 +97,11 @@ function noTime(){
 //Final Screen
 function endScreen(){
 	$('.answer-buttons').show();
-	$('.answer-1').text("Correct answers: " + answeredCorrect );
-	$('.answer-2').text("Wrong answers: " + answeredWrong );
-	$('.answer-3').text("Unanswered: " + unAnswered );
-	$('.answer-4').text(" Click Here To Play Again");
-	$('.answer-4').on("click", function(){	
+	$('.ans1').text("Correct answers: " + answeredCorrect );
+	$('.ans2').text("Wrong answers: " + answeredWrong );
+	$('.ans3').text("Unanswered: " + unAnswered );
+	$('.ans4').text(" Click Here To Play Again");
+	$('.ans4').on("click", function(){	
 	    gameReset();
 	    displayQuestion();
  	});
@@ -110,7 +110,7 @@ function endScreen(){
 
 
 
-//Display the questio and timer
+//Display the question and timer
 function displayQuestion() {
 	
 	var timer = 16;	
@@ -128,10 +128,10 @@ function displayQuestion() {
 	$('.question').text(questions[ques_counter].question).css({"color" : "white", "font-size" : "3em", "border" : ""});
 	//show all the buttons and their answers
 	$('.answer-buttons').show();
-	$('.answer-1').text(questions[ques_counter].answer1);
-	$('.answer-2').text(questions[ques_counter].answer2);
-	$('.answer-3').text(questions[ques_counter].answer3);
-	$('.answer-4').text(questions[ques_counter].answer4);
+	$('.ans1').text(questions[ques_counter].answer1);
+	$('.ans2').text(questions[ques_counter].answer2);
+	$('.ans3').text(questions[ques_counter].answer3);
+	$('.ans4').text(questions[ques_counter].answer4);
     
     //call the correctAnswer() or wrongAnswer()
 
@@ -159,14 +159,14 @@ function gameReset() {
 
 //Main part
 $(document).ready(function() {
-	$('.answer-1').text("Click Here To Start!");
-	$('.answer-2').hide();
-	$('.answer-3').hide();
-	$('.answer-4').hide();
+	$('.ans1').text("Click Here To Start!");
+	$('.ans2').hide();
+	$('.ans3').hide();
+	$('.ans4').hide();
 	$('.button').on("click", function(){
-		$('.answer-2').show();
-		$('.answer-3').show();
-		$('.answer-4').show();
+		$('.ans2').show();
+		$('.ans3').show();
+		$('.ans4').show();
 		displayQuestion();
 	});
 });
