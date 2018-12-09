@@ -16,7 +16,7 @@ var questions =[
 		answer3: "Toy Story",
 		answer4: "Lion King",
         correct: "Toy Story",
-        image:   "assets/images/toy_story"
+        image:   "toy_story"
 	},
 	{
 		question: "Which of these is NOT a game of The Spice Girls?",
@@ -24,7 +24,8 @@ var questions =[
 		answer2: "Fred Spice",
 		answer3: "Scary Spice",
 		answer4: "Posh Spice",
-		correct: "Fred Spice"
+        correct: "Fred Spice",
+        image:   "fred_spice"
 	},
 	{
 		question: "Which NBA teamwon the most title in the 90s?",
@@ -32,7 +33,8 @@ var questions =[
 		answer2: "Portland Trailblazers", 
 		answer3: "Los Angles Lakers",
 		answer4: "Chicago Bulls",
-		correct: "Chicago Bulls"
+        correct: "Chicago Bulls",
+        image:   "chicago_bulls"
 	},
 	{
 		question: "Which group released the hit song Smells Like Teen Spirit?",
@@ -40,7 +42,8 @@ var questions =[
 		answer2: "Backstreet Boys",
 		answer3: "The Offering",
 		answer4: "No Doubts",
-		correct: "Nirvana"
+        correct: "Nirvana",
+        image:   "nirvana"
     },
     {
 		question: "Which popular Disney movie featured the song, Circle of life?",
@@ -48,7 +51,8 @@ var questions =[
 		answer2: "Hercules",
 		answer3: "Mulan",
 		answer4: "The Lion King",
-		correct: "The Lion King"
+        correct: "The Lion King",
+        image:   "lion_king"
     },
     {
 		question: "What was Doug's best friend's name?",
@@ -56,13 +60,14 @@ var questions =[
 		answer2: "Mark",
 		answer3: "Zach",
 		answer4: "Cody",
-		correct: "Skeeter"
+        correct: "Skeeter",
+        image:   "skeeter"
 	},
    
 ]; 
 
 var questions_length = questions.length;
-console.log("questions_length== "+questions_length);
+//console.log("questions_length== "+questions_length);
 
 
 //correct answer
@@ -70,36 +75,33 @@ console.log("questions_length== "+questions_length);
 function correctAnswer(){
 	$(".button").off("click");
 	$(".answer-buttons").hide();	
-    //$('.question').text("Correct Answer!");
-    $(".question").html("Correct Answer!");
+    $(".question").text("Correct Answer!");
+    $(".image").html("<center><img src=assets/images/"+questions[ques_counter].image+".jpg width='200px' height='200px'></center>");   
 	ques_counter++;
 	answeredCorrect++;
-	clearInterval(intervalId);
-	if ( ques_counter == questions_length){  
+    clearInterval(intervalId);
+    if ( ques_counter == questions_length){  
 		setTimeout(endScreen, 1000 * 4);
 	} else {
-		setTimeout(displayQuestion, 1000 * 4);
-	}
+        setTimeout(displayQuestion, 1000 * 4);
+    }
 }
 
 // Wrong answer
 function wrongAnswer(){
 	$(".button").off("click");
 	$(".answer-buttons").hide();
-    $(".question").text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
-    //image_guessed_dom.setAttribute("src","assets/images/"+questions[ques_counter].image+".jpg");
+    $(".question").text("Nope..The correct answer was " + questions[ques_counter].correct);
     console.log(questions[ques_counter].image);
-    console.log(questions[ques_counter].correct);
-    //$('#my_image').attr('src','second.jpg');
-    //$(".image").attr("src",questions[ques_counter].image+".jpg");
-    $(".image").attr("src",questions[ques_counter].image+".jpg");
+    console.log(questions[ques_counter].correct);    
+    $(".image").html("<center><img src=assets/images/"+questions[ques_counter].image+".jpg width='200px' height='200px'></center>");   
 	ques_counter++;
 	answeredWrong++
-	clearInterval(intervalId);
+    clearInterval(intervalId);
 	if ( ques_counter == questions_length){
 		setTimeout(endScreen, 1000 * 2);
 	} else {
-		setTimeout(displayQuestion, 1000 * 2);
+        setTimeout(displayQuestion, 1000 * 2);
 	}
 	
 }
@@ -107,7 +109,9 @@ function wrongAnswer(){
 //Interval
 function noTime(){
 	$(".button").off("click");
-	$(".question").text("Time's Up!").css({"color" : "red", "font-size" : "5em"});
+    $(".question").text("Time's Up!");
+    $(".question").text("The correct answer was " + questions[ques_counter].correct);
+    $(".image").html("<center><img src=assets/images/"+questions[ques_counter].image+".jpg width='200px' height='200px'></center>");   
 	$(".answer-buttons").hide();
 	ques_counter++;
 	unAnswered++
@@ -122,11 +126,10 @@ function noTime(){
 //Final Screen
 function endScreen(){
     $(".answer-buttons").show();
-   // $('.question').text("Correct answers: " + answeredCorrect );
 	$(".ans1").text("Correct answers: " + answeredCorrect );
 	$(".ans2").text("Wrong answers: " + answeredWrong );
 	$(".ans3").text("Unanswered: " + unAnswered );
-	$(".ans4").text(" Click Here To Play Again");
+	$(".ans4").text("Start Over?");
 	$(".ans4").on("click", function(){	
 	    gameReset();
 	    displayQuestion();
@@ -139,19 +142,20 @@ function endScreen(){
 //Display the question and timer
 function displayQuestion() {
 	
-	var timer = 16;	
+	var timer = 6;	
 	intervalId = setInterval(decrement, 1000);
 	function decrement() {
       timer--;
       $(".timer").html("Time Remaining " + timer + " Seconds ");      
       if (timer === 0) {
-      	noTime();
+      	  noTime();
       }
   	}
    	
 	$(".button").off("click"); 
 	//display and style the current question
-	$(".question").text(questions[ques_counter].question).css({"color" : "white", "font-size" : "3em", "border" : ""});
+    $(".question").text(questions[ques_counter].question);
+    $(".image").empty();
 	//show all the buttons and their answers
 	$(".answer-buttons").show();
 	$(".ans1").text(questions[ques_counter].answer1);
