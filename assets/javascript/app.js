@@ -12,39 +12,57 @@ var questions =[
 	{
 		question: "What was the first full length CGI movie?",
 		answer1: "A Bug's Life", 
-		answer2:"Monster Inc", 
-		answer3:"Toy Story",
-		answer4:"Lion King",
-		correct: "Monster Inc"
+		answer2: "Monster Inc", 
+		answer3: "Toy Story",
+		answer4: "Lion King",
+        correct: "Toy Story",
+        image:   "assets/images/toy_story"
 	},
 	{
 		question: "Which of these is NOT a game of The Spice Girls?",
 		answer1: "Sporty Spice",
-		answer2: "Fried Spice",
+		answer2: "Fred Spice",
 		answer3: "Scary Spice",
 		answer4: "Posh Spice",
-		correct: "Scary Spice"
+		correct: "Fred Spice"
 	},
 	{
 		question: "Which NBA teamwon the most title in the 90s?",
 		answer1: "New York knicks", 
-		answer2:"Portland Trailblazers", 
-		answer3:"Los Angles Lakers",
-		answer4:"Chicago Bulls",
-		correct: "New York knicks"
+		answer2: "Portland Trailblazers", 
+		answer3: "Los Angles Lakers",
+		answer4: "Chicago Bulls",
+		correct: "Chicago Bulls"
 	},
 	{
 		question: "Which group released the hit song Smells Like Teen Spirit?",
 		answer1: "Nirvana",
 		answer2: "Backstreet Boys",
 		answer3: "The Offering",
-		answer4:"No Doubts",
-		correct: "The Offering"
+		answer4: "No Doubts",
+		correct: "Nirvana"
+    },
+    {
+		question: "Which popular Disney movie featured the song, Circle of life?",
+		answer1: "Aladin",
+		answer2: "Hercules",
+		answer3: "Mulan",
+		answer4: "The Lion King",
+		correct: "The Lion King"
+    },
+    {
+		question: "What was Doug's best friend's name?",
+		answer1: "Skeeter",
+		answer2: "Mark",
+		answer3: "Zach",
+		answer4: "Cody",
+		correct: "Skeeter"
 	},
    
 ]; 
 
 var questions_length = questions.length;
+console.log("questions_length== "+questions_length);
 
 
 //correct answer
@@ -53,7 +71,7 @@ function correctAnswer(){
 	$(".button").off("click");
 	$(".answer-buttons").hide();	
     //$('.question').text("Correct Answer!");
-    $('.question').html("Correct Answer!");
+    $(".question").html("Correct Answer!");
 	ques_counter++;
 	answeredCorrect++;
 	clearInterval(intervalId);
@@ -66,9 +84,15 @@ function correctAnswer(){
 
 // Wrong answer
 function wrongAnswer(){
-	$('.button').off("click");
-	$('.answer-buttons').hide();
-	$('.question').text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
+	$(".button").off("click");
+	$(".answer-buttons").hide();
+    $(".question").text("Nope..Wrong Answer! The correct answer was " + questions[ques_counter].correct);
+    //image_guessed_dom.setAttribute("src","assets/images/"+questions[ques_counter].image+".jpg");
+    console.log(questions[ques_counter].image);
+    console.log(questions[ques_counter].correct);
+    //$('#my_image').attr('src','second.jpg');
+    //$(".image").attr("src",questions[ques_counter].image+".jpg");
+    $(".image").attr("src",questions[ques_counter].image+".jpg");
 	ques_counter++;
 	answeredWrong++
 	clearInterval(intervalId);
@@ -82,9 +106,9 @@ function wrongAnswer(){
 
 //Interval
 function noTime(){
-	$('.button').off("click");
-	$('.question').text("Time's Up!").css({"color" : "red", "font-size" : "5em"});
-	$('.answer-buttons').hide();
+	$(".button").off("click");
+	$(".question").text("Time's Up!").css({"color" : "red", "font-size" : "5em"});
+	$(".answer-buttons").hide();
 	ques_counter++;
 	unAnswered++
 	clearInterval(intervalId);
@@ -97,12 +121,13 @@ function noTime(){
 
 //Final Screen
 function endScreen(){
-	$('.answer-buttons').show();
-	$('.ans1').text("Correct answers: " + answeredCorrect );
-	$('.ans2').text("Wrong answers: " + answeredWrong );
-	$('.ans3').text("Unanswered: " + unAnswered );
-	$('.ans4').text(" Click Here To Play Again");
-	$('.ans4').on("click", function(){	
+    $(".answer-buttons").show();
+   // $('.question').text("Correct answers: " + answeredCorrect );
+	$(".ans1").text("Correct answers: " + answeredCorrect );
+	$(".ans2").text("Wrong answers: " + answeredWrong );
+	$(".ans3").text("Unanswered: " + unAnswered );
+	$(".ans4").text(" Click Here To Play Again");
+	$(".ans4").on("click", function(){	
 	    gameReset();
 	    displayQuestion();
  	});
@@ -124,19 +149,19 @@ function displayQuestion() {
       }
   	}
    	
-	$('.button').off("click"); 
+	$(".button").off("click"); 
 	//display and style the current question
-	$('.question').text(questions[ques_counter].question).css({"color" : "white", "font-size" : "3em", "border" : ""});
+	$(".question").text(questions[ques_counter].question).css({"color" : "white", "font-size" : "3em", "border" : ""});
 	//show all the buttons and their answers
-	$('.answer-buttons').show();
-	$('.ans1').text(questions[ques_counter].answer1);
-	$('.ans2').text(questions[ques_counter].answer2);
-	$('.ans3').text(questions[ques_counter].answer3);
-	$('.ans4').text(questions[ques_counter].answer4);
+	$(".answer-buttons").show();
+	$(".ans1").text(questions[ques_counter].answer1);
+	$(".ans2").text(questions[ques_counter].answer2);
+	$(".ans3").text(questions[ques_counter].answer3);
+	$(".ans4").text(questions[ques_counter].answer4);
     
     //call the correctAnswer() or wrongAnswer()
 
-	$('.button').on("click", function(){
+	$(".button").on("click", function(){
 	 	if ($(this).text() == questions[ques_counter].correct){
 	 		correctAnswer();
 	 	} else {
@@ -155,15 +180,15 @@ function gameReset() {
 
 //Main part
 $(document).ready(function() {
-	$('.ans1').text("Click Here To Start!");
-	$('.ans2').hide();
-	$('.ans3').hide();
-	$('.ans4').hide();
-	$('.button').on("click", function(){
-        $('.ans1').show();
-		$('.ans2').show();
-		$('.ans3').show();
-		$('.ans4').show();
+	$(".ans1").text("Click Here To Start!");
+	$(".ans2").hide();
+	$(".ans3").hide();
+	$(".ans4").hide();
+	$(".button").on("click", function(){
+        $(".ans1").show();
+		$(".ans2").show();
+		$(".ans3").show();
+		$(".ans4").show();
 		displayQuestion();
 	});
 });
